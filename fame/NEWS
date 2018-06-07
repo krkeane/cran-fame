@@ -1,0 +1,109 @@
+Changes in Version 2.21
+
+  o getfame() failed to read doc attribute of a series if the documentation had
+    more than one string in it.
+    
+
+Changes in Version 2.20
+
+  o package:fame now Imports functions from package tis and no longer Depends on it. 
+    package:tis contains some functions with common names, like 'year' and 'month'.
+    By not attaching it along with package:fame, the tis package is less likely to interfere
+    with other packages that have functions with the same names in them. However, this also
+    means that if you really want the tis functions, you'll have to library(tis).
+
+Changes in Version 2.19
+
+  o better error messages and warnings for getfame()
+
+Changes in Version 2.18
+
+  o updated documentation for fameWhats() with better description of its
+    return value as suggested by Paul Gilbert.
+
+Changes in Version 2.17
+
+  o CASE series returned by getfame() now have a names attribute set to the
+    case numbers, a suggestion by Corwin Joy.
+
+  o make getfame() handle a date series that starts with an NA value. Thanks to Corwin
+    Joy for reporting the bug and suggesting a way to fix it.
+
+Changes in Version 2.16
+
+  o make getfame() correctly read scalar NC and ND values. Thanks to Corwin
+    Joy for reporting the bug.
+
+Changes in Version 2.15
+
+  o changed "env = envir" to "envir = envir" in several places to avoid
+    package check complaints about partial matches
+
+Changes in Version 2.14
+
+  o putfame() now tells you if it creates a database
+
+Changes in Version 2.13
+
+  o bugfix in fameWhat()
+
+Changes in Version 2.12
+
+  o change default value of closeConnection in fameDbClose() to FALSE. 
+
+Changes in Version 2.11
+
+  o bug fixes in server support. Thanks to Paul Gilbert for testing.
+
+Changes in Version 2.10
+
+  o export getFamePath()
+
+  o support for user-defined attributes
+
+Changes in Version 2.9
+
+  o should now work with Fame 'master/dbback' Fame servers. 
+
+Changes in Version 2.8
+
+  o functions fameWhat, fameWhats and getfame return then entire documentation and
+    description attributes, not just the first 256 characters.
+
+Changes in Version 2.7
+
+  o Thanks to Paul Gilbert (with an assist from Duncan Murdoch) for coming up
+    with a Makevars.win file that actually works.  The Windows build works again!
+
+  o For formula series, get description and documentation attributes from the
+    formula, not from the series that results from evaluating the formula.
+
+Changes in Version 2.6
+
+  o minor changes to documentation
+
+Changes in Version 2.5
+
+  o fixed getFamePath() to use file.access() function rather than hope that
+    the operating system knows what the "test" program is supposed to do.
+
+Changes in Version 2.4
+
+  o  minor documentation cleanup
+
+Changes in Version 2.0
+
+  o  functions implementing the ti and tis classes were split off into their
+     own package called "tis", which this package depends on.
+
+  o  The remote Fame and client-server functionality was removed due to security
+     concerns and because the Rserve package offers a better way to do this.
+
+  o  It works with Windows FAME!
+
+  o  The addLast() function that modified the .Last function in the global
+     environment was a bad idea.
+
+  o  The functions hexidecimal and hex2numeric were unnecessary, as the same
+     things can be accomplished with sprintf() and evaluating hex strings with
+     "0x" pasted on the front.

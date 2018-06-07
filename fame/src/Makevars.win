@@ -1,0 +1,20 @@
+# PKG_CPPFLAGS
+# PKG_CFLAGS
+# PKG_LIBS
+
+# We build a dummy chli.dll to satisfy fame externals
+PKG_CPPFLAGS += -Dfame -DDUMMY_CALLS
+
+all: $(SHLIB) chli.dll
+
+chli.dll: chli.c
+    MAKEFLAGS="CPPFLAGS=-DDUMMY_CALLS -Dfame" Rcmd SHLIB chli.c
+
+# old version
+# We build a dummy chli.dll to satisfy fame externals
+# CPPFLAGS += -Dfame
+
+# fame.dll: chli.dll
+
+# chli.dll: chli.c
+# 	gcc  -shared -s  -o chli.dll chli.c -DDUMMY_CALLS

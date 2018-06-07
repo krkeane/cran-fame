@@ -1,0 +1,25 @@
+if(tools:::.OStype() == "unix"){
+  useDynLib(fame)
+}
+
+importFrom(utils, capture.output)
+importFrom(stats, frequency, cycle, is.ts, start)
+import(tis)
+
+export(fameAddAttribute, fameAttribute, fameCommand, fameConnection,
+       fameDbClose, fameCreated, fameDbOpen,
+       fameDeleteObject, fameIsScalar, fameRunning, fameSetAttribute, fameStart,
+       fameStatusMessage, fameState, fameStop, fameUpdated, fameWhat,
+       fameWhats, fameWildlist, fameWriteSeries, fameWriteScalar, getfame, getFamePath,
+       putfame, runningLinux, runningWindows, tifToFameName, user) 
+
+S3method("print", fameConnection)
+S3method("close", fameConnection)
+
+## not exported
+## fameDbStatus, fameUserDefinedAttributes, fameSetDbAttributes,
+## convertFreqCode, fameBasiss, fameClasses, fameDate, fameDateString,
+## fameDateToTi, fameObserveds, fameSetState, fameToTif, fameTypes, fameModeInt, fameRange,
+## fameYmd, fameJul, isScalarOrTis, mightBeFameServer
+
+ 
