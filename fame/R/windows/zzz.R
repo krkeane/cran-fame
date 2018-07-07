@@ -19,10 +19,14 @@
   }
   else {  ## apparently FAME is installed
 
-    chliPath <- file.path(fameDir, "chli.dll")
+    if (.Machine$sizeof.pointer == 8) {
+      chliPath <- file.path(fameDir, "64", "chli.dll")
+    }
+    else if (.Machine$sizeof.pointer == 4) {
+      packageStartupMessage(sprintf("libname=%s pkgname=%s",libname,pkgname))
+      chliPath <- file.path(fameDir, "chli.dll")
+    }
 
-    if(!file.exists(chliPath))
-      stop(paste("chli.dll not found in", fameDir))
     dyn.load(chliPath, local = FALSE)
     if(is.loaded("cfmini"))
       assign(".chliPath", chliPath, pos = baseenv())
@@ -37,7 +41,7 @@
 .onUnload <- function(libpath){
   if(exists(".chliPath", envir = baseenv())){
     dyn.unload(get(".chliPath", pos = baseenv()))
-    remove(".chliPath", pos = baseenv())
+    #remove(".chliPath", pos = baseenv())
     library.dynam.unload("fame", libpath)
   }
 }
